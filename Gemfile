@@ -13,8 +13,9 @@ gem 'jbuilder', '~> 2.5'
 
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5'
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
 end
 
 group :development do
