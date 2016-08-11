@@ -4,6 +4,11 @@ RSpec.feature "A person can login", type: :feature do
   let(:password) { 'test_pass' }
   let(:user) { FactoryGirl.create(:user, password: password) }
 
+  scenario "A person can't access the site without logging in" do
+    visit user_path(user)
+    expect(current_path).to eq new_session_path
+  end
+
   scenario "A person can login" do
     visit new_session_path
     fill_in "username", with: user.username

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :authenticate_user, only: [:new, :create]
+
   def new
   end
 
@@ -13,8 +15,11 @@ class SessionsController < ApplicationController
     user = user.authenticate(params[:password])
 
     if user
+      #LOGGED IN
+      session[:user_id] = user.id
       redirect_to user
     else
+      #INVALID LOGIN
       redirect_to new_session_path
     end
   end
